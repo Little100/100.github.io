@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/thml; charset=utf-8"/>
+    <title>about Little_100's server</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-image: url("图片/bg1.jpeg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+
+      h1 {
+        font-size: 3em;
+        color: #fff;
+        background-color: transparent;
+        text-align: center;
+        margin-top: 10vh;
+      }
+    </style>
+    <script>
+      function randomColor() {
+        var hexStr = "0123456789abcdef";
+        var colorArr = [];
+        for (var i = 0; i < 6; i++) {
+          colorArr.push(hexStr.substr(Math.floor(Math.random() * 16), 1));
+        }
+        return "#" + colorArr.join("");
+      }
+
+      function changeColor() {
+        var heading = document.getElementsByTagName("h1")[0];
+        var currColor = heading.style.color;
+        var nextColor = randomColor();
+        while (currColor == nextColor) {
+          nextColor = randomColor();
+        }
+        heading.style.color = nextColor;
+      }
+
+      setInterval(changeColor, 1000);
+    </script>
+  </head>
+  <body>
+    <h1>关于我们</h1>
+  </body>
+</html>
