@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/thml; charset=utf-8"/>
     <title>about Little_100's server</title>
     <style>
-      html,
+      html, 
       body {
         height: 100%;
         margin: 0;
@@ -26,11 +25,17 @@
       }
 
       h1 {
-        font-size: 3em;
+        font-size: 6.5em;
         color: #fff;
         background-color: transparent;
         text-align: center;
         margin-top: 10vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
       }
     </style>
     <script>
@@ -43,20 +48,55 @@
         return "#" + colorArr.join("");
       }
 
-      function changeColor() {
-        var heading = document.getElementsByTagName("h1")[0];
-        var currColor = heading.style.color;
+      function changeColor(el) {
+        var currColor = el.style.color;
         var nextColor = randomColor();
         while (currColor == nextColor) {
           nextColor = randomColor();
         }
-        heading.style.color = nextColor;
+        el.style.color = nextColor;
       }
 
-      setInterval(changeColor, 1000);
+      setInterval(function() {
+        var heading = document.getElementsByTagName("h1")[0];
+        changeColor(heading);
+      }, 1000);
+
+      const checkFileExists = (url) => {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("HEAD", url, true);
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              resolve(true);
+            } else {
+              reject(false);
+            }
+          };
+          xhr.onerror = () => {
+            reject(false);
+          };
+          xhr.send();
+        });
+      };
+
+      const startLink = document.getElementById("start-link");
+
+      checkFileExists(startLink.href)
+        .then((res) => {})
+        .catch((err) => {
+          startLink.style.color = "#aaa";
+          startLink.style.cursor = "not-allowed";
+          startLink.onclick = () => {
+            return false;
+          };
+        });
     </script>
   </head>
   <body>
     <h1>关于我们</h1>
+    <p style="text-align:center; font-size: 2em; margin-top: 2em;">
+      <a href="HTML/about.html" id="start-link">让我们开始吧！请点击我</a>
+    </p>
   </body>
 </html>
