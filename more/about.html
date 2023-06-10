@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>关于我们的Minecraft</title>
+    <link rel="shortcut icon" href="../图片/Grass.ico">
+    <style>
+      body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      }
+      body {
+        background-image: url("../图片/bg/bg2.gif");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 16px;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 10em;
+        max-width: calc(100% - 20em);
+      }
+      .image-and-text {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      }
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        float: left;
+        margin-left: 10em;
+        margin-right: 2em;
+        width: 128px;
+        height: 128px;
+        opacity: 0;
+        animation: fadeInRight 0.5s both;
+        padding: 1em;
+      }
+      .image-container img {
+        max-width: 100%;
+        max-height: auto;
+      }
+      .text-container {
+        margin-left: 10em;
+        max-width: calc(100% - 150px);
+        background-color: transparent;
+        opacity: 0;
+        animation: fadeInRight 0.8s 0.2s both;
+        padding: 1em;
+      }
+      .text-container p {
+        margin: 0;
+        padding: 1em;
+        word-wrap: break-word;
+        line-height: 1.5;
+      }
+      @media only screen and (max-width: 768px) {
+        .container {
+          margin: 0 5em;
+        }
+        .image-container {
+          width: 64px;
+          height: 64px;
+        }
+        .text-container {
+          margin-left: -4em;
+          max-width: 100%;
+        }
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(10%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .flyout-text {
+        position: absolute;
+        z-index: 9999;
+        animation-duration: 1s;
+        animation-name: flyout;
+        transition: color 0.5s;
+        color: white;
+        opacity: 0.9;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 24px;
+        font-weight: bold;
+        background-color: transparent;
+      }
+      @keyframes flyout {
+        from {
+          transform: translate(0, -100%);
+          opacity: 1;
+        }
+
+        to {
+          transform: translate(-50%, -100%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body oncontextmenu="return false;">
+    <div class="container">
+      <a href="y.html">
+        <div class="image-container">
+          <img src="../图片/Y/topy.png" alt="Minecraft图片">
+        </div>
+        <div class="text-wrapper">
+          <div class="text-container">
+            <p>这是一个“😍情”网站。这里可以看一些相关的成人视频，如探讨生命的产生、物品、地图、地点等等。请确保您已经18岁成年，以确保良好的视频效果。当未成年一定需要时，获取监护人的同意即可。
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="container">
+      <a href="y.html">
+        <div class="image-container">
+          <img src="../图片/Y/topy.png" alt="Minecraft图片">
+        </div>
+        <div class="text-wrapper">
+          <div class="text-container">
+            <p>这是一个“😍情”网站。这里可以看一些相关的成人视频，如探讨生命的产生、物品、地图、地点等等。请确保您已经18岁成年，以确保良好的视频效果。当未成年一定需要时，获取监护人的同意即可。</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div id="text-container">
+      <p id="random-text"></p>
+    </div>
+    <script>
+      function getRandomPosition(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+        const offsetX = Math.floor(Math.random() * 100);
+        const offsetY = Math.floor(Math.random() * 100);
+        return {
+          x: x + offsetX,
+          y: y - offsetY,
+        };
+      }
+      function getRandomText() {
+        const texts = ["你真可爱", "我爱你❤", "我喜欢你","喜欢和你碎碎念","看到你的一刻","我眼里充满了你","你是我心底的暖阳","有你的陪伴，晴天都很美好","对于我来说，你就是完美的那一个","世间无双，只愿做你唯一的归宿","只想对你付出全部的爱和关怀","我的内心永远装得下你","你的微笑，是我的全部幸福","陪你走过每一个拐角，直到生命终点","爱你就像呼吸一样自然而然，无法停止","你是我生命中最重要的存在"];
+        return texts[Math.floor(Math.random() * texts.length)];
+      }
+      document.addEventListener('click', function(event) {   
+        const position = getRandomPosition(event);
+        const flyoutText = document.createElement('div');
+        flyoutText.className = 'flyout-text';
+        flyoutText.innerText = getRandomText();        
+        flyoutText.style.left = position.x + 'px';
+        flyoutText.style.top = position.y + 'px';
+        flyoutText.style.color = 'rgb(' +
+            Math.floor(Math.random() * 256) + ',' +
+            Math.floor(Math.random() * 256) + ',' +
+            Math.floor(Math.random() * 256) + ')';
+        document.body.appendChild(flyoutText);
+        setTimeout(function() {
+          flyoutText.remove();
+        }, 1500);
+      });
+    </script>
+  </body>
+</html>
