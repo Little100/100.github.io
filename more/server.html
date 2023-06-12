@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="../图片/server.ico">
+        <title>About Server</title>
+        <style>
+        body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        }
+        body {
+            background-image: url("../图片/bg/bg2.gif");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-size: 16px;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+          }
+          @keyframes fadeInRight {
+            from {
+              opacity: 0;
+              transform: translateX(10%);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          .flyout-text {
+            position: absolute;
+            z-index: 9999;
+            animation-duration: 1s;
+            animation-name: flyout;
+            transition: color 0.5s;
+            color: white;
+            opacity: 0.9;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: transparent;
+          }
+          @keyframes flyout {
+            from {
+              transform: translate(0, -100%);
+              opacity: 1;
+            }
+    
+            to {
+              transform: translate(-50%, -100%);
+              opacity: 0;
+            }
+          }
+          .video-container {
+			position: relative;
+			width: 50%;
+			margin: 0 auto;
+			padding-top: 56.25%;
+            }
+            video {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="video-container">
+            <video controls autoplay>
+              <source src="../视频/server.mp4" type="video/mp4">
+            </video>
+        </div>
+        <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=9kyRNiNzTCz91wHete-U8Ui-OZe28nVI&authKey=rnEmh%2BmKT7ofw0XdRk5qRtXlgEqPU%2FJ1NLyQswYogBrUwVd438xZ3f%2BBPwY6GYtU&noverify=0&group_code=529038943">
+            <img src="../图片/Other/qq.png" style="position: fixed ; absolute; bottom: 0; right: 0; padding: 0.35em;">
+        </a>
+        <div id="text-container">
+            <p id="random-text"></p>
+          </div>
+          <script>
+            function getRandomPosition(event) {
+              const x = event.clientX;
+              const y = event.clientY;
+              const offsetX = Math.floor(Math.random() * 100);
+              const offsetY = Math.floor(Math.random() * 100);
+              return {
+                x: x + offsetX,
+                y: y - offsetY,
+              };
+            }
+            function getRandomText() {
+              const texts = ["你真可爱", "我爱你❤", "我喜欢你","喜欢和你碎碎念","看到你的一刻","我眼里充满了你","你是我心底的暖阳","有你的陪伴，晴天都很美好","对于我来说，你就是完美的那一个","世间无双，只愿做你唯一的归宿","只想对你付出全部的爱和关怀","我的内心永远装得下你","你的微笑，是我的全部幸福","陪你走过每一个拐角，直到生命终点","爱你就像呼吸一样自然而然，无法停止","你是我生命中最重要的存在","我若是游子，你便是人间","你再不来，我要下雪了","世界上所有的相遇都是久别重逢","今夜我不关心人类，我只想你","答案很长，我准备用一生时间来回答，你准备听了吗？","我喜欢的样子，你都有","此生不悔入MC","来世还做方块人！！","永不放弃，总有一天你会成功","僵尸永远是为你提供食物的第一个生物","1","0","0","其","实","是","个","受","越努力，越幸运","在Minecraft中，只有那些不断尝试的人，才能最终实现自己的梦想","不要害怕失败，失败只会证明你在尽力尝试着成功","这个世界充满了未知和挑战，但只要坚持不懈，我们就能够战胜一切","我们可能会遇到很多艰难的时刻，但是只要不断向前，我们一定会成功","没有困难的任务，只有不努力的人","缺少钻石？试试鱼骨挖矿！","水桶海绵两用，能够方便地建造或清理水下项目","木条合成员轨道，能够提供方便的人员运输","泥土合成苗圃，可以轻松、快速地种植各种作物","箭矢合成烟花火箭,为你喜欢的人点一场烟花吧！","使用萤石块创建出独特、闪亮的道路或建筑"];
+              return texts[Math.floor(Math.random() * texts.length)];
+            }
+            document.addEventListener('click', function(event) {   
+              const position = getRandomPosition(event);
+              const flyoutText = document.createElement('div');
+              flyoutText.className = 'flyout-text';
+              flyoutText.innerText = getRandomText();        
+              flyoutText.style.left = position.x + 'px';
+              flyoutText.style.top = position.y + 'px';
+              flyoutText.style.color = 'rgb(' +
+                  Math.floor(Math.random() * 256) + ',' +
+                  Math.floor(Math.random() * 256) + ',' +
+                  Math.floor(Math.random() * 256) + ')';
+              document.body.appendChild(flyoutText);
+              setTimeout(function() {
+                flyoutText.remove();
+              }, 1500);
+            });
+            </script>
+    </body>
+</html>
